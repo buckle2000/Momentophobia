@@ -1,0 +1,87 @@
+public class Main extends PApplet {
+    float b1r, b2r, b1v, b2v;
+    float b1x, b1y, b2x, b2y;
+    boolean moving;
+    PApplet instance;
+    String prompt;
+    Box2DProcessing box2d;
+
+    public static void main(String[] args) {
+        PApplet.main("Main");
+    }
+
+    public void settings() {
+        instance=this;
+        size(800, 600);
+        b1r = 50;
+        b2r = 50;
+        b1v = 5;
+        b2v = -5;
+    }
+
+    public void setup() {
+        ellipseMode(RADIUS);
+        textAlign(CENTER, CENTER);
+        textSize(32);
+        reset();
+        box2d = new Box2DProcessing(this);
+        box2d.createWorld();
+    }
+
+    public void reset() {
+        moving = false;
+        b1x = 200;
+        b2x = 600;
+        b1y = b2y = 300;
+        prompt="Start";
+    }
+
+    public void draw() {
+        background(255);
+        if (moving) {
+            b1x += b1v;
+            b2x += b2v;
+            if (b1x + b1r >= b2x - b2r) {
+                b1v = -b1v;
+                b2v = -b2v;
+            }
+        }
+        fill(255, 128, 0);
+        ellipse(b1x, b1y, b1r, b1r);
+        fill(17, 122, 238);
+        ellipse(b2x, b2y, b2r, b2r);
+        rectMode(CENTER);
+        fill(180);
+        rect(686, 516, 100, 60);
+        fill(0);
+        text(prompt, 686, 516);
+    }
+
+    public void mousePressed() {
+        if (isin2(mouseX, mouseY, 686, 516, 100, 60)){
+            if (moving)
+                reset();
+             else{
+                prompt="Stop";
+                moving=true;
+            }
+        }
+    }
+
+    public void mouseDragged() {
+
+    }
+
+    public void mouseReleased() {
+
+    }
+
+    boolean isin(float x, float y, float x1, float y1, float x2, float y2) {
+        if (x >= x1 && x <= x2 && y >= y1 && y <= y2) return true;
+        return false;
+    }
+
+    boolean isin2(float x, float y, float cx, float cy, float w, float h) {
+        if (x >= cx - w / 2 && x <= cx + w / 2 && y >= cy - h / 2 && y <= cy + h / 2) return true;
+        return false;
+    }
