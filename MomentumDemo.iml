@@ -4,12 +4,14 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="library" level="application" />
-    <orderEntry type="library" name="reference" level="application" />
+    <orderEntry type="library" scope="TEST" name="reference" level="application" />
     <orderEntry type="library" name="G4P" level="application" />
-    <orderEntry type="library" name="box2d4processing" level="application" />
+    <orderEntry type="library" name="C:\buckle2000\software\processing\core\library" level="application" />
   </component>
 </module>
